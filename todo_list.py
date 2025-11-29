@@ -3,20 +3,20 @@ import os
 import tkinter as tk
 from tkinter import ttk, simpledialog, messagebox
 
-# --- Setup root (ThemedTk if available) ---
+# Setup root 
 try:
     from ttkthemes import ThemedTk
     root = ThemedTk(theme="arc")
 except Exception:
     root = tk.Tk()
 
-root.title("To-Do — Gemini UI (simple)")
-root.geometry("420x420")
+root.title("To-Do List")
+root.geometry("490x450")
 root.resizable(True, True)
 
 FILE = "todo_list.json"
 
-# --- Data helpers (very small) ---
+# Data helpers 
 def load_tasks():
     if not os.path.exists(FILE):
         return []
@@ -35,10 +35,9 @@ def save_tasks(tasks):
     except Exception as e:
         messagebox.showerror("Save error", str(e))
 
-# --- App state ---
 tasks = load_tasks()   # list of dicts
 
-# --- UI building (kept simple and linear) ---
+# UI building 
 top = ttk.Frame(root, padding=12)
 top.pack(fill="x")
 
@@ -69,7 +68,7 @@ scroll = ttk.Scrollbar(mid, orient="vertical", command=listbox.yview)
 scroll.pack(side="right", fill="y")
 listbox.config(yscrollcommand=scroll.set)
 
-# --- Simple logic functions ---
+# Features logic functions
 def refresh():
     listbox.delete(0, "end")
     for t in tasks:
@@ -123,19 +122,18 @@ def clear_all():
         tasks.clear()
         refresh()
         save_tasks(tasks)
-        
-# --- Buttons (super clean, no exception handling) ---
+
+# Buttons 
 bot = ttk.Frame(root, padding=12)
 bot.pack(fill="x")
 
-# Try a custom ttk style (may not work on all themes)
 style = ttk.Style()
 style.configure("Green.TButton", background="#70e2f3", foreground="#e9482c")
 style.map("Green.TButton", background=[("active", "#70e2f3")])
 
 btn = lambda txt, cmd: ttk.Button(bot, text=txt, style="Green.TButton", command=cmd)
 
-btn("Done", toggle_done).grid(row=0, column=0, sticky="ew", padx=4, pady=2)
+btn("Done/Undone", toggle_done).grid(row=0, column=0, sticky="ew", padx=4, pady=2)
 btn("Edit",        edit_task).grid(row=0, column=1, sticky="ew", padx=4, pady=2)
 btn("Delete",      delete_task).grid(row=0, column=2, sticky="ew", padx=4, pady=2)
 btn("Clear All",   clear_all).grid(row=0, column=3, sticky="ew", padx=4, pady=2)
