@@ -123,48 +123,7 @@ def clear_all():
         tasks.clear()
         refresh()
         save_tasks(tasks)
-
-# --- Buttons with color support (ttk style if possible, else tk.Button) ---
-#bot = ttk.Frame(root, padding=12)
-#bot.pack(fill="x")
-
-##_use_ttk_style = False
-##try:
-    ##style = ttk.Style()
-    # try configure a style; wrap in try in case a theme disallows it
-    ##try:
-   ##     style.configure("Green.TButton",
-  ##                      background="#5cb85c",
-  ##                      foreground="#90e8e4",
-  ##                      padding=6)
-  ##      style.map("Green.TButton",
-  ##                background=[("active", "#4cae4c"), ("!active", "#5cb85c")],
-  ##                foreground=[("active", "#90e8e4"), ("!active", "#90e8e4")])
-  ##      _use_ttk_style = True
-  ##  except Exception:
-  ##      _use_ttk_style = False
-##except Exception:
-    ##_use_ttk_style = False
-
-##def make_button(parent, text, cmd):
-    ##if _use_ttk_style:
-        ##return ttk.Button(parent, text=text, style="Green.TButton", command=cmd)
-    ##return tk.Button(parent, text=text, bg="#5cb85c", fg="#90e8e4", activebackground="#4cae4c", command=cmd)
-
-##btn_toggle = make_button(bot, "Toggle Done", toggle_done)
-##btn_toggle.grid(row=0, column=0, sticky="ew", padx=4, pady=2)
-
-##btn_edit = make_button(bot, "Edit", edit_task)
-##btn_edit.grid(row=0, column=1, sticky="ew", padx=4, pady=2)
-
-#btn_delete = make_button(bot, "Delete", delete_task)
-##btn_delete.grid(row=0, column=2, sticky="ew", padx=4, pady=2)
-
-##btn_clear = make_button(bot, "Clear All", clear_all)
-##btn_clear.grid(row=0, column=3, sticky="ew", padx=4, pady=2)
-
-#for c in range(4):
-    #bot.columnconfigure(c, weight=1)
+        
 # --- Buttons (super clean, no exception handling) ---
 bot = ttk.Frame(root, padding=12)
 bot.pack(fill="x")
